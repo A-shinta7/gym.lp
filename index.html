@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>続かない人のためのパーソナルジム | 新井慎太</title>
+    <meta name="description" content="運動が続かない、ジムが怖いと感じる30代〜50代の方へ。上質なプライベート空間で、パーソナルトレーニングとケア（ヘッド・ストレッチ）を組み合わせた完全オーダーメイド指導をご提供します。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ========================
+           Variables & Reset
+           ======================== */
+        :root {
+            --primary-color: #1a202c; /* 深みのあるチャコール・ネイビー */
+            --accent-color: #d4af37; /* 高級感のあるシャンパンゴールド */
+            --accent-hover: #b5952f;
+            --bg-light: #fafafa;
+            --bg-gray: #f4f5f7;
+            --text-main: #2d3748;
+            --text-light: #718096;
+            --white: #ffffff;
+            --section-padding: 100px 20px;
+            --max-width: 1000px;
+            --radius-md: 16px;
+            --shadow-sm: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* ========================
+           Animations
+           ======================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .delay-3 { animation-delay: 0.6s; opacity: 0; }
+
+        /* ========================
+           Typography & Common
+           ======================== */
+        h2.section-title {
+            text-align: center;
+            font-size: 2.4rem;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+        }
+
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+            margin: 20px auto 0;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-color), #f3e5ab);
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 22px 45px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: all 0.6s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
+        }
+
+        .cta-btn:hover::after {
+            left: 150%;
+        }
+
+        .cta-subtext {
+            display: block;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* ========================
+           ① ファーストビュー (FV)
+           ======================== */
+        .fv {
+            background: 
+                linear-gradient(to right, rgba(26, 32, 44, 0.85), rgba(26, 32, 44, 0.4)),
+                url('./images/hero.png') center/cover no-repeat;
+            padding: 150px 20px 120px;
+            text-align: left;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .fv-content {
+            color: var(--white);
+            max-width: 800px;
+        }
+
+        .fv .catch {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            line-height: 1.3;
+            letter-spacing: 0.05em;
+        }
+
+        .fv .catch .highlight {
+            color: var(--accent-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .fv .catch .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .fv .sub-catch {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 50px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 2;
+        }
+
+        /* ========================
+           ② 悩み訴求
+           ======================== */
+        .pain {
+            background-color: var(--white);
+            padding: var(--section-padding);
+            position: relative;
+        }
+
+        .pain-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .pain-item {
+            background-color: var(--white);
+            padding: 25px 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .pain-item:hover {
+            transform: translateX(10px);
+        }
+
+        .pain-item::before {
+            content: '✓';
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* ========================
+           ③ 解決策提示
+           ======================== */
+        .solution {
+            padding: 120px 20px;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: var(--white);
+            background-image: radial-gradient(circle at center, #2d3748 0%, #1a202c 100%);
+        }
+
+        .solution h2.section-title {
+            color: var(--white);
+        }
+        .solution h2.section-title::after {
+            background-color: var(--accent-color);
+        }
+
+        .solution p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            line-height: 2.2;
+        }
+        .solution strong {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        /* ========================
+           ④ 選ばれる理由
+           ======================== */
+        .reason {
+            padding: 120px 20px;
+            background-color: var(--bg-light);
+        }
+
+        .reason-card {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 100px;
+        }
+
+        .reason-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .reason-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .reason-img {
+            flex: 1;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+        
+        .reason-img img {
+            transition: transform 0.7s ease;
+        }
+        
+        .reason-card:hover .reason-img img {
+            transform: scale(1.05);
+        }
+
+        .reason-text {
+            flex: 1;
+            padding: 20px 0;
+        }
+
+        .reason-num {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: inline-block;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .reason-text h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            line-height: 1.4;
+        }
+        
+        .reason-text p {
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        /* ========================
+           ⑤ サービス内容
+           ======================== */
+        .service {
+            padding: 120px 20px;
+            background-color: var(--white);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            background-color: var(--bg-light);
+            padding: 50px 40px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid #edf2f7;
+            transition: all 0.4s ease;
+        }
+
+        .service-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+            background-color: var(--white);
+        }
+
+        .service-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .service-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        /* ========================
+           ⑥ ビフォーアフター
+           ======================== */
+        .ba {
+            padding: 120px 20px;
+            background-color: var(--bg-gray);
+        }
+
+        .ba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .ba-card {
+            background-color: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ba-img {
+            width: 100%;
+            height: 280px;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            background-image: linear-gradient(45deg, #f1f5f9 25%, transparent 25%, transparent 75%, #f1f5f9 75%, #f1f5f9), linear-gradient(45deg, #f1f5f9 25%, transparent 25%, transparent 75%, #f1f5f9 75%, #f1f5f9);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        
+        .ba-img::after {
+            content: 'Before / After (Image Coming Soon)';
+            background: rgba(255,255,255,0.8);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .ba-text {
+            padding: 40px;
+        }
+
+        .ba-text strong {
+            display: inline-block;
+            color: var(--white);
+            background-color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        /* ========================
+           ⑦ お客様の声
+           ======================== */
+        .voice {
+            padding: 120px 20px;
+            background-color: var(--white);
+        }
+
+        .voice-card {
+            background-color: var(--bg-light);
+            padding: 50px;
+            border-radius: var(--radius-md);
+            margin-bottom: 30px;
+            position: relative;
+            border-left: 2px solid var(--accent-color);
+        }
+
+        .voice-card::before {
+            content: '“';
+            font-size: 120px;
+            color: rgba(212, 175, 55, 0.1);
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-family: 'Noto Serif JP', serif;
+            line-height: 1;
+        }
+
+        .voice-meta {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .voice-meta::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
+            background-color: var(--accent-color);
+        }
+
+        .voice-card p {
+            position: relative;
+            z-index: 1;
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 2;
+        }
+
+        /* ========================
+           ⑧ トレーナー紹介
+           ======================== */
+        .profile {
+            padding: 120px 20px;
+            background-color: var(--bg-gray);
+        }
+
+        .profile-content {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            background-color: var(--white);
+            padding: 60px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-img {
+            flex: 0 0 350px;
+            height: 450px;
+            border-radius: 12px;
+            background-color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .profile-text {
+            flex: 1;
+        }
+
+        .profile-text h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+        }
+
+        .profile-text .role {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 30px;
+            display: block;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        .profile-text p {
+            font-weight: 300;
+            color: var(--text-main);
+            line-height: 2.2;
+        }
+
+        /* ========================
+           ⑨ よくある質問
+           ======================== */
+        .faq {
+            padding: 120px 20px;
+            background-color: var(--white);
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 25px;
+        }
+
+        .faq-q {
+            font-weight: 700;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            color: var(--primary-color);
+            font-size: 1.15rem;
+            letter-spacing: 0.05em;
+        }
+
+        .faq-q::before {
+            content: 'Q.';
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-family: 'Noto Serif JP', serif;
+            line-height: 1;
+        }
+
+        .faq-a {
+            padding: 0 0 0 45px;
+            color: var(--text-light);
+            margin-top: 15px;
+            font-weight: 300;
+            line-height: 1.9;
+        }
+
+        /* ========================
+           ⑩ CTA
+           ======================== */
+        .cta-section {
+            padding: 120px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2d3748 100%);
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section p {
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            border-radius: 24px;
+            color: var(--white);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-box h3 {
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            font-size: 1.6rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .dummy-notice {
+            margin-bottom: 40px;
+            font-weight: 500;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            background-color: rgba(0,0,0,0.2);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 3px solid var(--accent-color);
+            text-align: left;
+        }
+
+        /* ========================
+           Footer
+           ======================== */
+        footer {
+            background-color: #0f131a;
+            color: #4a5568;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* ========================
+           Responsive
+           ======================== */
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 80px 20px;
+            }
+
+            .fv {
+                padding: 120px 20px 80px;
+                background-position: 70% center;
+            }
+
+            .fv .catch {
+                font-size: 2.2rem;
+            }
+            
+            h2.section-title {
+                font-size: 1.8rem;
+            }
+
+            .pain-item {
+                padding: 20px;
+                font-size: 1rem;
+            }
+
+            .reason-card, .reason-card:nth-child(even) {
+                flex-direction: column;
+                gap: 40px;
+                margin-bottom: 80px;
+            }
+
+            .profile-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+
+            .profile-img {
+                flex: 0 0 300px;
+                height: 350px;
+                width: 100%;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .faq-q {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .faq-q::before {
+                margin-bottom: -5px;
+            }
+            .faq-a {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ① ファーストビュー -->
+    <header class="fv fade-in">
+        <div class="container fv-content">
+            <h1 class="catch"><span class="highlight">「続かない」</span>人のための<br>パーソナルジム</h1>
+            <p class="sub-catch">上質なプライベート空間で、あなただけのプログラムを。<br>トレーニング×ボディケアで、無理なく理想の身体へ導きます。</p>
+            <div class="fade-in delay-1">
+                <a href="#cta" class="cta-btn">まずは無料カウンセリングへ</a>
+                <span class="cta-subtext">※価格・予約フォームは準備中です</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ② 悩み訴求 -->
+    <section class="pain">
+        <div class="container fade-in delay-2">
+            <h2 class="section-title">こんなお悩みありませんか？</h2>
+            <div class="pain-list">
+                <div class="pain-item">ダイエットしたいが、いつも続かない</div>
+                <div class="pain-item">ジムは敷居が高くて、怖いイメージがある</div>
+                <div class="pain-item">何から始めればいいのか全くわからない</div>
+                <div class="pain-item">年齢とともに体型が崩れ、自己流では限界を感じる</div>
+                <div class="pain-item">忙しくてまとまった時間が取れず、疲れが溜まっている</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ③ 解決策提示 -->
+    <section class="solution">
+        <div class="container fade-in delay-1">
+            <h2 class="section-title">そのお悩み、すべて解決します</h2>
+            <p>私たちはお客様一人ひとりのライフスタイルや運動レベルに合わせた、<br><strong class="serif">完全オーダーメイド</strong>のプログラムをご提供します。</p>
+            <p style="margin-top: 40px; font-size: 1.1rem; opacity: 0.8;">
+                「続けられない」のはあなたのせいではありません。<br>
+                続けられる正しい環境と、あなたを深く理解するパートナーがいないだけです。<br>
+                新井慎太に、あなたの身体づくりをお任せください。
+            </p>
+        </div>
+    </section>
+
+    <!-- ④ 選ばれる理由 -->
+    <section class="reason">
+        <div class="container">
+            <h2 class="section-title fade-in">当ジムが選ばれる3つの理由</h2>
+            
+            <div class="reason-card fade-in delay-1">
+                <div class="reason-img">
+                    <img src="./images/reason1.png" alt="完全オーダーメイド指導">
+                </div>
+                <div class="reason-text">
+                    <span class="reason-num">Reason 01</span>
+                    <h3 class="serif">お客様に寄り添う<br>完全オーダーメイド指導</h3>
+                    <p>決まったマニュアルを押し付けることは決してありません。あなたの目標、体力、生活習慣を丁寧にヒアリングし、無理のない最適なトレーニングメニューを作成します。初心者の方でも怪我なく安心してスタートできる、上質な環境を整えています。</p>
+                </div>
+            </div>
+
+            <div class="reason-card fade-in delay-1">
+                <div class="reason-img">
+                    <img src="./images/reason2.png" alt="トレーニング×ケア">
+                </div>
+                <div class="reason-text">
+                    <span class="reason-num">Reason 02</span>
+                    <h3 class="serif">鍛えるだけじゃない<br>「極上の癒やしとケア」</h3>
+                    <p>厳しいトレーニングだけでなく、疲れた身体を深く癒やすヘッドセラピーや専門的なストレッチもご提供。運動後のリカバリーを促進し、ストレス解消や自律神経の調整にも効果的です。「行くのが楽しみになる」至福の時間をお約束します。</p>
+                </div>
+            </div>
+
+            <div class="reason-card fade-in delay-1">
+                <div class="reason-img">
+                    <img src="./images/reason3.png" alt="続けられる設計">
+                </div>
+                <div class="reason-text">
+                    <span class="reason-num">Reason 03</span>
+                    <h3 class="serif">絶対に挫折させない<br>「続けられる緻密な設計」</h3>
+                    <p>短期的な無理なダイエットはリバウンドの元です。私たちは「習慣化」にフォーカスした、科学的かつ心理的なアプローチを行います。モチベーションが下がった時こそ、トレーナーが親身に寄り添い、二人三脚で確実なゴールへと導きます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑤ サービス内容 -->
+    <section class="service">
+        <div class="container fade-in">
+            <h2 class="section-title">提供サービス</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3 class="serif">パーソナルトレーニング</h3>
+                    <p>正しいフォームと適切な負荷で、効率よく筋肉にアプローチ。初心者でも安全かつ高い効果を実感していただけます。</p>
+                </div>
+                <div class="service-item">
+                    <h3 class="serif">ダイエット指導</h3>
+                    <p>極端な食事制限はせず、細胞レベルから美しくなる健康的な食事管理を、ライフスタイルに合わせてアドバイスします。</p>
+                </div>
+                <div class="service-item">
+                    <h3 class="serif">ボディメイク</h3>
+                    <p>ただ体重を落とすだけでなく、姿勢を正し、メリハリのある洗練された美しいボディラインを創り上げます。</p>
+                </div>
+                <div class="service-item">
+                    <h3 class="serif">ヘッドセラピー</h3>
+                    <p>日々のストレスや眼精疲労を深く和らげ、自律神経を整える極上のリラクゼーションを提供します。</p>
+                </div>
+                <div class="service-item">
+                    <h3 class="serif">上質ストレッチ</h3>
+                    <p>柔軟性を高め、肩こり・腰痛の根本予防や、トレーニング効果の最大化を図るプロフェッショナルなケアです。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑥ ビフォーアフター -->
+    <section class="ba">
+        <div class="container fade-in">
+            <h2 class="section-title">変化の実績</h2>
+            <div class="ba-grid">
+                <div class="ba-card">
+                    <div class="ba-img"></div>
+                    <div class="ba-text">
+                        <strong>40代 女性 / 運動初心者</strong>
+                        <p>「運動嫌いな私でも、週1回のペースで3ヶ月。体重-5kg、ウエスト-8cmを達成できました！上質なケアがあるおかげで疲れも残りません。」</p>
+                    </div>
+                </div>
+                <div class="ba-card">
+                    <div class="ba-img"></div>
+                    <div class="ba-text">
+                        <strong>30代 男性 / 経営者</strong>
+                        <p>「自己流で全く変わらなかった体型が、プロの指導で劇的に変化。スーツが美しく着こなせるようになり、仕事のパフォーマンスも上がりました。」</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑦ お客様の声 -->
+    <section class="voice">
+        <div class="container fade-in">
+            <h2 class="section-title">お客様の声</h2>
+            <div class="voice-card">
+                <div class="voice-meta">50代 女性 / 専業主婦</div>
+                <p>ジムは敷居が高いと思っていましたが、新井トレーナーの洗練されたホスピタリティに惹かれて入会しました。その日の体調に合わせてヘッドスパやストレッチを取り入れてくれるので、今では毎週通うのが楽しみな至福の時間になっています。</p>
+            </div>
+            <div class="voice-card">
+                <div class="voice-meta">30代 女性 / 会社員</div>
+                <p>今まで色々なダイエットに挑戦しては挫折してきましたが、ここは『なぜ続かないのか』を一緒に考えてくれました。無理のない食事アドバイスと楽しいトレーニングで、気がつけば運動が最高の習慣になっていました！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑧ トレーナー紹介 -->
+    <section class="profile">
+        <div class="container fade-in">
+            <h2 class="section-title">トレーナー紹介</h2>
+            <div class="profile-content">
+                <div class="profile-img">
+                    <img src="https://placehold.co/400x500/e2e8f0/94a3b8?text=Trainer+Photo" alt="新井慎太" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="profile-text">
+                    <span class="role">Personal Trainer</span>
+                    <h3 class="serif">新井 慎太 <span style="font-size: 1.2rem; color: var(--text-light); font-weight: 300;">（37歳）</span></h3>
+                    <p style="margin-top: 30px;">
+                        初めまして、新井慎太と申します。<br>
+                        私はこれまで、多くの方の「変わりたいけど続かない」という深い悩みに向き合ってきました。運動を本物の習慣にするためには、ただ厳しいトレーニングをするだけでなく、心と体のケアが不可欠です。<br><br>
+                        当ジムでは、上質なトレーニングと極上のリラクゼーションを融合させ、「心身ともに健康で美しくなれる場所」を提供しています。運動に自信がない方、ジムに不安がある方こそ、ぜひ一度ご相談ください。あなたの専属パートナーとして、全力でサポートいたします。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑨ よくある質問 -->
+    <section class="faq">
+        <div class="container fade-in">
+            <h2 class="section-title">よくある質問</h2>
+            <div class="faq-item">
+                <div class="faq-q">運動経験が全くありませんが大丈夫ですか？</div>
+                <div class="faq-a">はい、大歓迎です。お客様の多くが運動初心者からスタートされています。完全個室のプライベート空間で、他人の目を気にせず無理のないペースで丁寧に指導いたしますのでご安心ください。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">食事制限は厳しいですか？</div>
+                <div class="faq-a">いいえ、当ジムでは「糖質完全カット」などの極端な制限は推奨していません。お客様のライフスタイルや嗜好に合わせ、長期間無理なく続けられ、かつ美しくなれる健康的な食事改善をアドバイスします。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">ケア（ヘッド・ストレッチ）だけの利用も可能ですか？</div>
+                <div class="faq-a">基本的にはトレーニングとセットで効果を最大化するプログラムとなっておりますが、その日の体調により「今日はケアのみを長めに行う」といった柔軟な対応が可能です。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑩ CTA -->
+    <section id="cta" class="cta-section fade-in">
+        <div class="container">
+            <h2 class="serif">さあ、新しい自分に出会いましょう</h2>
+            <p>「続かない」自分を卒業して、理想の身体と上質な健康を手に入れませんか？<br>まずは無料カウンセリングで、あなたのお悩みをお聞かせください。</p>
+            
+            <div class="cta-box">
+                <h3 class="serif">無料カウンセリング予約</h3>
+                
+                <div class="dummy-notice">
+                    <strong style="color: var(--accent-color); display: block; margin-bottom: 10px;">只今、システム準備中となっております</strong>
+                    大変申し訳ございませんが、現在料金プランの改定および新しい予約システムの導入を行っております。<br>
+                    公開まで今しばらくお待ちくださいますようお願い申し上げます。
+                </div>
+
+                <a href="#" class="cta-btn" style="pointer-events: none; opacity: 0.5; background: #4a5568; box-shadow: none;">予約フォームを開く（準備中）</a>
+                <span class="cta-subtext" style="color: rgba(255,255,255,0.5); margin-top: 20px;">※無理な勧誘は一切行いませんのでご安心ください。</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Shinta Arai Personal Gym. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
